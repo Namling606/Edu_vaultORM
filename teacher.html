@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EduVault — Teachers</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">EduVault</div>
+      <nav>
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="uploads.html" class="nav-link">Uploads</a>
+        <a href="myuploads.html" class="nav-link">My Uploads</a>
+        <a href="profile.html" class="nav-link">My Activity</a>
+        <a href="teacher.html" class="nav-link active">Teachers</a>
+        <a href="help.html" class="nav-link">Help Center</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h2>Teachers</h2>
+        <div class="top-actions">
+          <input id="searchTeachers" placeholder="Search teacher name..." />
+        </div>
+      </header>
+
+      <section class="content">
+        <h3>Popular Teachers</h3>
+        <div id="teacherList" class="grid-tiles"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="overlay hidden"></div>
+  <!-- details modal reused for teacher profile if needed -->
+  <script src="script.js"></script>
+</body>
+</html>

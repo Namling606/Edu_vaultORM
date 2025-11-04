@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><title>Register</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="style.css" /></head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label>Name</label><input name="name" required/>
+        <label>Email</label><input name="email" required/>
+        <label>Password</label><input name="password" type="password" required/>
+        <label>Select your role</label>
+        <select name="role"><option>Teacher</option><option>Student</option></select>
+        <div style="text-align:right;margin-top:10px"><button class="btn" type="submit">Sign up</button></div>
+      </form>
+      <div class="auth-footer">Already have account? <a href="login.html">Sign-in</a></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

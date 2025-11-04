@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EduVault — Uploads</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">EduVault</div>
+      <nav>
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="uploads.html" class="nav-link active">Uploads</a>
+        <a href="myuploads.html" class="nav-link">My Uploads</a>
+        <a href="profile.html" class="nav-link">My Activity</a>
+        <a href="teacher.html" class="nav-link">Teachers</a>
+        <a href="help.html" class="nav-link">Help Center</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="openUpload2" class="btn">Upload new file</button>
+        <div class="user-area">
+          <div id="userGreeting2">Guest</div>
+          <div class="small-links"><a href="login.html">Login</a> | <a href="#" id="logoutLink2">Log out</a></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <input id="searchUploads" placeholder="Search title, uploader..." />
+          <select id="typeFilter"><option value="all">All types</option><option value="pptx">PPT</option><option value="pdf">PDF</option><option value="docx">DOCX</option></select>
+          <select id="gradeFilterUploads"><option value="all">All grades</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+        </div>
+        <div class="right">
+          <button id="notifBtnUploads" class="btn small">Notifications (<span id="notifCountUploads">0</span>)</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <h1>Uploads</h1>
+        <div id="uploadsTable" class="table"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- shared modals same as index (keep only once in file system) -->
+  <div id="overlay" class="overlay hidden"></div>
+  <!-- copy detailsModal, uploadModal, assistantModal, logoutConfirm markup from index.html -->
+  <!-- For brevity, include them here or ensure they are present in uploads.html; same ids expected by js -->
+  <!-- ...copy/paste the modal HTML from index.html here... -->
+  <div id="detailsModal" class="modal hidden">
+    <div class="modal-header"><h3 id="detailTitle">Title</h3><button id="closeDetail" class="btn small">Close</button></div>
+    <div class="modal-body">
+      <p><strong>Uploader:</strong> <span id="detailUploader"></span></p>
+      <p><strong>Type / Size:</strong> <span id="detailType"></span> • <span id="detailSize"></span></p>
+      <p><strong>Grade:</strong> <span id="detailGrade"></span> • <strong>Rating:</strong> <span id="detailRating"></span></p>
+      <div class="detail-actions">
+        <button id="saveBtn" class="btn small">Save</button>
+        <button id="downloadBtn" class="btn small">Download</button>
+        <button id="reportBtn" class="btn small">Report</button>
+      </div>
+      <hr/>
+      <div>
+        <h4>Comments</h4>
+        <div id="detailComments"></div>
+        <div class="comment-form">
+          <input id="commentText" placeholder="Write a comment" />
+          <button id="addComment" class="btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="uploadModal" class="modal hidden">
+    <div class="modal-header"><h3>Upload new resource</h3><button id="closeUpload" class="btn small">Close</button></div>
+    <div class="modal-body">
+      <form id="uploadForm">
+        <label>Title</label><input name="title" required/>
+        <label>Type</label>
+        <select name="type"><option value="pptx">PPT</option><option value="pdf">PDF</option><option value="docx">DOCX</option></select>
+        <label>Grade</label>
+        <select name="grade"><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+        <label>Uploader</label><input name="uploader" placeholder="Your name" />
+        <label>Size (MB)</label><input name="size" placeholder="e.g., 2.0" />
+        <label>Rating (1-5)</label><input name="rating" type="number" min="1" max="5" value="3" />
+        <div style="text-align:right;margin-top:8px"><button type="submit" class="btn">Upload</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="assistantModal" class="modal hidden">
+    <div class="modal-header"><h3>Assistant & Feedback</h3><button id="closeAssistant" class="btn small">Close</button></div>
+    <div class="modal-body">
+      <h4>Send feedback</h4>
+      <textarea id="feedbackText" placeholder="Describe your feedback (no sensitive info)"></textarea>
+      <div style="text-align:right;margin-top:8px"><button id="sendFeedback" class="btn">Send</button></div>
+      <hr/>
+      <h4>Ask assistant</h4>
+      <input id="assistantQuery" placeholder="Ask about uploading, downloading, or searching..." />
+      <div style="text-align:right;margin-top:8px"><button id="askAssistant" class="btn">Ask</button></div>
+      <div id="assistantAnswer" class="assistant-answer"></div>
+    </div>
+  </div>
+
+  <div id="logoutConfirm" class="modal hidden">
+    <div class="modal-header"><h3>Log out</h3></div>
+    <div class="modal-body">
+      <p>Would you like to log out?</p>
+      <div style="text-align:right"><button id="cancelLogout" class="btn small">Cancel</button> <button id="confirmLogout" class="btn">Yes</button></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

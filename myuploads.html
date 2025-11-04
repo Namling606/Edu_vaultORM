@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EduVault — My Uploads</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">EduVault</div>
+      <nav>
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="uploads.html" class="nav-link">Uploads</a>
+        <a href="myuploads.html" class="nav-link active">My Uploads</a>
+        <a href="profile.html" class="nav-link">My Activity</a>
+        <a href="teacher.html" class="nav-link">Teachers</a>
+        <a href="help.html" class="nav-link">Help Center</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="openUpload3" class="btn">Upload new file</button>
+        <div class="user-area">
+          <div id="userGreeting3">Guest</div>
+          <div class="small-links"><a href="login.html">Login</a> | <a href="#" id="logoutLink3">Log out</a></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <input id="searchMyUploads" placeholder="Search my uploads..." />
+        </div>
+        <div class="right">
+          <button id="notifBtnMy" class="btn small">Notifications (<span id="notifCountMy">0</span>)</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <h1>My Uploads</h1>
+        <div id="myUploadsList" class="list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- reuse modals from index.html -->
+  <div id="overlay" class="overlay hidden"></div>
+  <!-- copy detailsModal, uploadModal, assistantModal ... -->
+
+  <script src="script.js"></script>
+</body>
+</html>

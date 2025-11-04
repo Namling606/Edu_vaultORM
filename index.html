@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EduVault — Dashboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">EduVault</div>
+
+      <nav>
+        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="uploads.html" class="nav-link">Uploads</a>
+        <a href="myuploads.html" class="nav-link">My Uploads</a>
+        <a href="profile.html" class="nav-link">My Activity</a>
+        <a href="teacher.html" class="nav-link">Teachers</a>
+        <a href="help.html" class="nav-link">Help Center</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="openUpload" class="btn">Upload new file</button>
+        <div class="user-area">
+          <div id="userGreeting">Kuzu Zangpo, <span id="userShort">Guest</span></div>
+          <div class="small-links">
+            <a href="login.html" id="loginLink">Login</a> | <a href="#" id="logoutLink">Log out</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="brand-left">
+          <h2>Dashboard</h2>
+          <div class="subtitle">Let’s make today productive!</div>
+        </div>
+
+        <div class="top-actions">
+          <input id="searchMain" placeholder="Search resources, teacher, grade..." />
+          <select id="gradeFilter">
+            <option value="all">All grades</option>
+            <option value="7">Grade 7</option>
+            <option value="8">Grade 8</option>
+            <option value="9">Grade 9</option>
+            <option value="10">Grade 10</option>
+          </select>
+          <button id="notifBtn" class="btn small">Notifications (<span id="notifCount">0</span>)</button>
+          <button id="assistantBtn" class="btn small">Assistant</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="top-cards">
+          <div class="card small">
+            <div class="card-label">Today’s uploads</div>
+            <div class="card-value" id="todayUploads">0</div>
+          </div>
+          <div class="card small">
+            <div class="card-label">Total uploads</div>
+            <div class="card-value" id="totalUploads">0</div>
+          </div>
+          <div class="card small">
+            <div class="card-label">Saved</div>
+            <div class="card-value" id="totalSaved">0</div>
+          </div>
+          <div class="card small">
+            <div class="card-label">Downloaded</div>
+            <div class="card-value" id="totalDownloaded">0</div>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <h3>Recent uploads</h3>
+          <div class="section-actions">
+            <select id="sortRecent"><option value="new">Newest</option><option value="old">Oldest</option></select>
+          </div>
+        </div>
+
+        <div id="recentList" class="list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Shared modals / overlays -->
+  <div id="overlay" class="overlay hidden"></div>
+
+  <!-- Details modal -->
+  <div id="detailsModal" class="modal hidden">
+    <div class="modal-header"><h3 id="detailTitle">Title</h3><button id="closeDetail" class="btn small">Close</button></div>
+    <div class="modal-body">
+      <p><strong>Uploader:</strong> <span id="detailUploader"></span></p>
+      <p><strong>Type / Size:</strong> <span id="detailType"></span> • <span id="detailSize"></span></p>
+      <p><strong>Grade:</strong> <span id="detailGrade"></span> • <strong>Rating:</strong> <span id="detailRating"></span></p>
+      <div class="detail-actions">
+        <button id="saveBtn" class="btn small">Save</button>
+        <button id="downloadBtn" class="btn small">Download</button>
+        <button id="reportBtn" class="btn small">Report</button>
+      </div>
+      <hr/>
+      <div>
+        <h4>Comments</h4>
+        <div id="detailComments"></div>
+        <div class="comment-form">
+          <input id="commentText" placeholder="Write a comment" />
+          <button id="addComment" class="btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload modal -->
+  <div id="uploadModal" class="modal hidden">
+    <div class="modal-header"><h3>Upload new resource</h3><button id="closeUpload" class="btn small">Close</button></div>
+    <div class="modal-body">
+      <form id="uploadForm">
+        <label>Title</label><input name="title" required/>
+        <label>Type</label>
+        <select name="type"><option value="pptx">PPT</option><option value="pdf">PDF</option><option value="docx">DOCX</option></select>
+        <label>Grade</label>
+        <select name="grade"><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+        <label>Uploader</label><input name="uploader" placeholder="Your name" />
+        <label>Size (MB)</label><input name="size" placeholder="e.g., 2.0" />
+        <label>Rating (1-5)</label><input name="rating" type="number" min="1" max="5" value="3" />
+        <div style="text-align:right;margin-top:8px"><button type="submit" class="btn">Upload</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Assistant / Feedback modal -->
+  <div id="assistantModal" class="modal hidden">
+    <div class="modal-header"><h3>Assistant & Feedback</h3><button id="closeAssistant" class="btn small">Close</button></div>
+    <div class="modal-body">
+      <h4>Send feedback</h4>
+      <textarea id="feedbackText" placeholder="Describe your feedback (no sensitive info)"></textarea>
+      <div style="text-align:right;margin-top:8px"><button id="sendFeedback" class="btn">Send</button></div>
+      <hr/>
+      <h4>Ask assistant</h4>
+      <input id="assistantQuery" placeholder="Ask about uploading, downloading, or searching..." />
+      <div style="text-align:right;margin-top:8px"><button id="askAssistant" class="btn">Ask</button></div>
+      <div id="assistantAnswer" class="assistant-answer"></div>
+    </div>
+  </div>
+
+  <!-- Logout confirm -->
+  <div id="logoutConfirm" class="modal hidden">
+    <div class="modal-header"><h3>Log out</h3></div>
+    <div class="modal-body">
+      <p>Would you like to log out?</p>
+      <div style="text-align:right"><button id="cancelLogout" class="btn small">Cancel</button> <button id="confirmLogout" class="btn">Yes</button></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

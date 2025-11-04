@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Help Center</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">EduVault</div>
+      <nav>
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="uploads.html" class="nav-link">Uploads</a>
+        <a href="myuploads.html" class="nav-link">My Uploads</a>
+        <a href="profile.html" class="nav-link">My Activity</a>
+        <a href="teacher.html" class="nav-link">Teachers</a>
+        <a href="help.html" class="nav-link active">Help Center</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><h2>Help Center</h2></header>
+      <section class="content">
+        <div class="help-card">
+          <h3>How to download resources</h3><p>Open resource details and click Download. This demo simulates download and tracks count.</p>
+        </div>
+        <div class="help-card">
+          <h3>How to upload files</h3><p>Use "Upload new file", fill details and press Upload. Files are stored locally in your browser (demo).</p>
+        </div>
+        <div class="help-card">
+          <h3>How to comment or report an error</h3><p>Open resource details, write a comment or click Report to notify admin (simulated).</p>
+        </div>
+        <div class="help-card">
+          <h3>Send Feedback</h3>
+          <textarea id="helpFeedback" placeholder="Write feedback..."></textarea>
+          <div style="text-align:right"><button id="helpSendFeedback" class="btn">Send</button></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="overlay" class="overlay hidden"></div>
+  <script src="script.js"></script>
+</body>
+</html>
